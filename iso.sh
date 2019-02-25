@@ -1,15 +1,15 @@
 #!/bin/sh
-set -e
+
 . ./build.sh
 
-mkdir -p isodir
-mkdir -p isodir/boot
 mkdir -p isodir/boot/grub
 
-cp sysroot/boot/mOS.kernel isodir/boot/mOS.kernel
+cp kernel.bin isodir/boot/kernel.bin
+
 cat > isodir/boot/grub/grub.cfg << EOF
 menuentry "mOS" {
-	multiboot /boot/mOS.kernel
+    multiboot /boot/kernel.bin
 }
 EOF
+
 grub-mkrescue -o mOS.iso isodir
