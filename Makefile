@@ -5,7 +5,7 @@ AS_FLAGS = --32
 LD = ld
 LD_FLAGS = -melf_i386
 
-OBJECTS = loader.o kernel.o terminal.o vga.o strlen.o
+OBJECTS = loader.o kernel.o terminal.o vga.o strlen.o gdt.o
 
 %.o: %.cpp
 	$(CC) $(CC_FLAGS) -o $@ -c $<

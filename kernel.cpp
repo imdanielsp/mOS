@@ -1,4 +1,5 @@
 #include "terminal.h"
+#include "gdt.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -21,11 +22,10 @@ void initConstructors()
 /// Entry point of the kernel
 void kernelMain(void* multiboot, unsigned int magicnumber)
 {
+    mOS::GlobalDescriptorTable gdt;
+
     mOS::Terminal term;
-
     term.writeString("Hello kernel world\n");
-
-    while(1);
 }
 
 #ifdef __cplusplus
