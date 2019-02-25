@@ -1,7 +1,33 @@
+#include "terminal.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+typedef void (*constructor)();
+
+static constructor start_ctors;
+static constructor end_ctors;
+
+/// Initialize the constructors
+void initConstructors()
+{
+    for (constructor* ctors = &start_ctors; *ctors != end_ctors; ctors++)
+    {
+        (*ctors)();
+    }
+}
+
+/// Entry point of the kernel
 void kernelMain(void* multiboot, unsigned int magicnumber)
 {
-    printf("Hello kernel world!\n");
+    mOS::Terminal term;
+
+    term.writeString("Hello kernel world\n");
 
     while(1);
 }
+
+#ifdef __cplusplus
+}
+#endif

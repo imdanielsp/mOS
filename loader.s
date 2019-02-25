@@ -11,9 +11,13 @@
 # Kernel entry point
 .section .text
 .extern kernelMain
+.extern initConstructors
 .global loader
 loader:
     mov $kernel_stack, %esp
+
+    call initConstructors
+
     push %eax
     push %ebx
     call kernelMain
