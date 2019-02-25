@@ -4,6 +4,8 @@
 #include <stdint.h>
 #include <stddef.h>
 
+#include "utils.h"
+
 namespace mOS
 {
     class Terminal
@@ -14,14 +16,7 @@ namespace mOS
 
         ~Terminal() = default;
 
-        /// Non-copyable
-        Terminal(const Terminal&) = delete;
-
-        /// Non-movable
-        Terminal(const Terminal&&) = delete;
-
-        /// Non-assignable
-        Terminal& operator=(const Terminal&) = delete;
+        NON_COPYABLE(Terminal);
 
         /// Writes a character to the terminal
         /// @param[in] c the character to 

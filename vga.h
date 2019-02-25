@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include <stddef.h>
+#include "utils.h"
 
 namespace mOS
 {
@@ -28,11 +29,12 @@ namespace mOS
     class VGA
     {
       public:
+        // No need to instanciate this at this point
+        VGA() = delete;
+
         ~VGA() = default;
 
-        static uint16_t* const Address;
-        static const size_t Width;
-        static const size_t Height;
+        NON_COPYABLE(VGA);
 
         static inline uint8_t entryColor(enum VGAColor fg, enum VGAColor bg)
         {
@@ -43,13 +45,12 @@ namespace mOS
         {
             return static_cast<uint16_t>(uc) | static_cast<uint16_t>(color) << 8;
         }
-      private:
-        // Make this 
-        VGA();
-        VGA(const VGA&);
-        VGA(const VGA&&);
-        VGA& operator=(const VGA&);
 
+        static uint16_t* const Address;
+
+        static const size_t Width;
+
+        static const size_t Height;
     };
 } // mOS
 
